@@ -1,13 +1,18 @@
+/* Styles for components that need to respect the new padding structure */
+
+/* In-Reply-To */
 .root {
-  text-decoration: none;
+  padding: 0 var(--tweet-padding-x);
+  margin-top: 12px;
+  margin-bottom: 4px;
   color: var(--tweet-font-color-secondary);
-  font-size: 0.9375rem;
-  line-height: 1.25rem;
-  margin-bottom: 0.25rem;
-  overflow-wrap: break-word;
-  white-space: pre-wrap;
+  font-size: 0.875rem;
 }
-.root:hover {
-  text-decoration-thickness: 1px;
-  text-decoration-line: underline;
+.link {
+  color: var(--tweet-font-color-secondary);
+  text-decoration: none;
+}
+.link:hover {
+  text-decoration: underline;
+  color: var(--tweet-font-color);
 }

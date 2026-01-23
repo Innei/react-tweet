@@ -3,6 +3,8 @@
   font-weight: var(--tweet-body-font-weight);
   line-height: var(--tweet-body-line-height);
   margin: var(--tweet-body-margin);
+  padding: 0 var(--tweet-padding-x); /* Add side padding here */
   overflow-wrap: break-word;
   white-space: pre-wrap;
+  color: var(--tweet-font-color);
 }

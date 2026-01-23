@@ -1,5 +1,6 @@
 import { type EnrichedTweet, formatNumber } from '../utils.js'
 import { TweetActionsCopy } from './tweet-actions-copy.js'
+import { TweetInfoCreatedAt } from './tweet-info-created-at.js'
 import s from './tweet-actions.module.css'
 
 export const TweetActions = ({ tweet }: { tweet: EnrichedTweet }) => {
@@ -40,6 +41,12 @@ export const TweetActions = ({ tweet }: { tweet: EnrichedTweet }) => {
         <span className={s.replyText}>Reply</span>
       </a>
       <TweetActionsCopy tweet={tweet} />
+      
+      <div className={s.spacer} />
+      
+      <div className={s.info}>
+        <TweetInfoCreatedAt tweet={tweet} />
+      </div>
     </div>
   )
 }

@@ -1,40 +1,42 @@
 .react-tweet-theme {
-  --tweet-container-margin: 1.5rem 0;
+  --tweet-container-margin: 0;
+  
+  /* Component Spacing */
+  --tweet-padding-x: 20px;
+  --tweet-padding-y: 16px;
 
   /* Header */
   --tweet-header-font-size: 0.9375rem;
-  --tweet-header-line-height: 1.25rem;
+  --tweet-header-line-height: 1.5rem;
 
   /* Text */
-  --tweet-body-font-size: 1.25rem;
+  --tweet-body-font-size: 1rem;
   --tweet-body-font-weight: 400;
-  --tweet-body-line-height: 1.5rem;
-  --tweet-body-margin: 0;
+  --tweet-body-line-height: 1.625;
+  --tweet-body-margin: 12px 0;
 
   /* Quoted Tweet */
-  --tweet-quoted-container-margin: 0.75rem 0;
-  --tweet-quoted-body-font-size: 0.938rem;
+  --tweet-quoted-container-margin: 12px 0;
+  --tweet-quoted-body-font-size: 0.875rem;
   --tweet-quoted-body-font-weight: 400;
-  --tweet-quoted-body-line-height: 1.25rem;
-  --tweet-quoted-body-margin: 0.25rem 0 0.75rem 0;
+  --tweet-quoted-body-line-height: 1.5;
+  --tweet-quoted-body-margin: 4px 0 8px 0;
 
   /* Info */
-  --tweet-info-font-size: 0.9375rem;
-  --tweet-info-line-height: 1.25rem;
+  --tweet-info-font-size: 0.8125rem;
+  --tweet-info-line-height: 1.5rem;
 
-  /* Actions like the like, reply and copy buttons */
-  --tweet-actions-font-size: 0.875rem;
+  /* Actions */
+  --tweet-actions-font-size: 0.8125rem;
   --tweet-actions-line-height: 1rem;
-  --tweet-actions-font-weight: 700;
-  --tweet-actions-icon-size: 1.25em;
-  --tweet-actions-icon-wrapper-size: calc(
-    var(--tweet-actions-icon-size) + 0.75em
-  );
+  --tweet-actions-font-weight: 500;
+  --tweet-actions-icon-size: 1.125em;
+  --tweet-actions-icon-wrapper-size: 32px;
 
   /* Reply button */
-  --tweet-replies-font-size: 0.875rem;
+  --tweet-replies-font-size: 0.8125rem;
   --tweet-replies-line-height: 1rem;
-  --tweet-replies-font-weight: 700;
+  --tweet-replies-font-weight: 500;
 }
 
 :where(.react-tweet-theme) * {
@@ -45,89 +47,79 @@
 
 :is([data-theme='light'], .light) :where(.react-tweet-theme),
 :where(.react-tweet-theme) {
-  --tweet-skeleton-gradient: linear-gradient(
-    270deg,
-    #fafafa,
-    #eaeaea,
-    #eaeaea,
-    #fafafa
-  );
-  --tweet-border: 1px solid rgb(207, 217, 222);
-  --tweet-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Helvetica, Arial, sans-serif;
-  --tweet-font-color: rgb(15, 20, 25);
-  --tweet-font-color-secondary: rgb(83, 100, 113);
-  --tweet-bg-color: #fff;
-  --tweet-bg-color-hover: rgb(247, 249, 249);
-  --tweet-quoted-bg-color-hover: rgba(0, 0, 0, 0.03);
-  --tweet-color-blue-primary: rgb(29, 155, 240);
-  --tweet-color-blue-primary-hover: rgb(26, 140, 216);
-  --tweet-color-blue-secondary: rgb(0, 111, 214);
-  --tweet-color-blue-secondary-hover: rgba(0, 111, 214, 0.1);
-  --tweet-color-red-primary: rgb(249, 24, 128);
-  --tweet-color-red-primary-hover: rgba(249, 24, 128, 0.1);
-  --tweet-color-green-primary: rgb(0, 186, 124);
-  --tweet-color-green-primary-hover: rgba(0, 186, 124, 0.1);
-  --tweet-twitter-icon-color: var(--tweet-font-color);
-  --tweet-verified-old-color: rgb(130, 154, 171);
-  --tweet-verified-blue-color: var(--tweet-color-blue-primary);
+  --tweet-skeleton-gradient: linear-gradient(270deg, #fafafa, #eaeaea, #eaeaea, #fafafa);
+  
+  /* Palette - Light (Geist-inspired) */
+  --tweet-bg-color: #ffffff;
+  --tweet-bg-color-hover: #ffffff;
+  --tweet-bg-color-secondary: #f7f7f7; /* More distinct gray for depth */
+  
+  --tweet-border: 1px solid #eaeaea;
+  --tweet-border-hover: 1px solid #000;
+  
+  --tweet-font-family: 'Geist Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --tweet-font-color: #000;
+  --tweet-font-color-secondary: #666;
+  
+  --tweet-color-blue-primary: #0070f3;
+  --tweet-color-blue-primary-hover: #0051a2;
+  --tweet-color-red-primary: #e00;
+  --tweet-color-green-primary: #0070f3;
+  
+  --tweet-twitter-icon-color: #000; /* Strictly black */
+  --tweet-verified-blue-color: #0070f3;
+  
+  --tweet-button-bg: #171717;
+  --tweet-button-color: #ffffff;
+  --tweet-button-hover-bg: #404040;
 }
 
 :is([data-theme='dark'], .dark) :where(.react-tweet-theme) {
-  --tweet-skeleton-gradient: linear-gradient(
-    270deg,
-    #15202b,
-    rgb(30, 39, 50),
-    rgb(30, 39, 50),
-    rgb(21, 32, 43)
-  );
-  --tweet-border: 1px solid rgb(66, 83, 100);
-  --tweet-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Helvetica, Arial, sans-serif;
-  --tweet-font-color: rgb(247, 249, 249);
-  --tweet-font-color-secondary: rgb(139, 152, 165);
-  --tweet-bg-color: rgb(21, 32, 43);
-  --tweet-bg-color-hover: rgb(30, 39, 50);
-  --tweet-quoted-bg-color-hover: rgba(255, 255, 255, 0.03);
-  --tweet-color-blue-primary: rgb(29, 155, 240);
-  --tweet-color-blue-primary-hover: rgb(26, 140, 216);
-  --tweet-color-blue-secondary: rgb(107, 201, 251);
-  --tweet-color-blue-secondary-hover: rgba(107, 201, 251, 0.1);
-  --tweet-color-red-primary: rgb(249, 24, 128);
-  --tweet-color-red-primary-hover: rgba(249, 24, 128, 0.1);
-  --tweet-color-green-primary: rgb(0, 186, 124);
-  --tweet-color-green-primary-hover: rgba(0, 186, 124, 0.1);
-  --tweet-twitter-icon-color: var(--tweet-font-color);
-  --tweet-verified-old-color: rgb(130, 154, 171);
+  --tweet-skeleton-gradient: linear-gradient(270deg, #111, #333, #333, #111);
+  
+  /* Palette - Dark (Geist-inspired) */
+  --tweet-bg-color: #000;
+  --tweet-bg-color-hover: #000;
+  --tweet-bg-color-secondary: #111; /* Visible depth */
+  
+  --tweet-border: 1px solid #333;
+  --tweet-border-hover: 1px solid #fff;
+  
+  --tweet-font-family: 'Geist Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --tweet-font-color: #fff;
+  --tweet-font-color-secondary: #888;
+  
+  --tweet-color-blue-primary: #3291ff;
+  --tweet-color-blue-primary-hover: #0070f3;
+  --tweet-color-red-primary: #e00;
+  --tweet-color-green-primary: #3291ff;
+  
+  --tweet-twitter-icon-color: #fff; /* Strictly white */
   --tweet-verified-blue-color: #fff;
+  
+  --tweet-button-bg: #ededed;
+  --tweet-button-color: #171717;
+  --tweet-button-hover-bg: #d4d4d4;
 }
 
 @media (prefers-color-scheme: dark) {
   :where(.react-tweet-theme) {
-    --tweet-skeleton-gradient: linear-gradient(
-      270deg,
-      #15202b,
-      rgb(30, 39, 50),
-      rgb(30, 39, 50),
-      rgb(21, 32, 43)
-    );
-    --tweet-border: 1px solid rgb(66, 83, 100);
-    --tweet-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      Helvetica, Arial, sans-serif;
-    --tweet-font-color: rgb(247, 249, 249);
-    --tweet-font-color-secondary: rgb(139, 152, 165);
-    --tweet-bg-color: rgb(21, 32, 43);
-    --tweet-bg-color-hover: rgb(30, 39, 50);
-    --tweet-color-blue-primary: rgb(29, 155, 240);
-    --tweet-color-blue-primary-hover: rgb(26, 140, 216);
-    --tweet-color-blue-secondary: rgb(107, 201, 251);
-    --tweet-color-blue-secondary-hover: rgba(107, 201, 251, 0.1);
-    --tweet-color-red-primary: rgb(249, 24, 128);
-    --tweet-color-red-primary-hover: rgba(249, 24, 128, 0.1);
-    --tweet-color-green-primary: rgb(0, 186, 124);
-    --tweet-color-green-primary-hover: rgba(0, 186, 124, 0.1);
-    --tweet-twitter-icon-color: var(--tweet-font-color);
-    --tweet-verified-old-color: rgb(130, 154, 171);
+     --tweet-skeleton-gradient: linear-gradient(270deg, #111, #333, #333, #111);
+    --tweet-bg-color: #0a0a0a;
+    --tweet-bg-color-hover: #171717;
+    --tweet-bg-color-secondary: #121212;
+    --tweet-border: 1px solid #262626;
+    --tweet-border-hover: 1px solid #525252;
+    --tweet-font-color: #ededed;
+    --tweet-font-color-secondary: #a3a3a3;
+    --tweet-color-blue-primary: #3291ff;
+    --tweet-color-blue-primary-hover: #0070f3;
+    --tweet-color-red-primary: #e00;
+    --tweet-color-green-primary: #3291ff;
+    --tweet-twitter-icon-color: #ededed;
     --tweet-verified-blue-color: #fff;
+    --tweet-button-bg: #ededed;
+    --tweet-button-color: #171717;
+    --tweet-button-hover-bg: #d4d4d4;
   }
 }

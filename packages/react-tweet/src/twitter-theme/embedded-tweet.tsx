@@ -22,16 +22,24 @@ export const EmbeddedTweet = ({ tweet: t, components }: Props) => {
   const tweet = useMemo(() => enrichTweet(t), [t])
   return (
     <TweetContainer>
-      <TweetHeader tweet={tweet} components={components} />
-      {tweet.in_reply_to_status_id_str && <TweetInReplyTo tweet={tweet} />}
-      <TweetBody tweet={tweet} />
-      {tweet.mediaDetails?.length ? (
-        <TweetMedia tweet={tweet} components={components} />
-      ) : null}
-      {tweet.quoted_tweet && <QuotedTweet tweet={tweet.quoted_tweet} components={components} />}
-      <TweetInfo tweet={tweet} />
-      <TweetActions tweet={tweet} />
-      <TweetReplies tweet={tweet} />
+      <div className="react-tweet-header">
+        <TweetHeader tweet={tweet} components={components} />
+      </div>
+      
+      <div className="react-tweet-body">
+        {tweet.in_reply_to_status_id_str && <TweetInReplyTo tweet={tweet} />}
+        <TweetBody tweet={tweet} />
+        {tweet.mediaDetails?.length ? (
+          <TweetMedia tweet={tweet} components={components} />
+        ) : null}
+        {tweet.quoted_tweet && <QuotedTweet tweet={tweet.quoted_tweet} components={components} />}
+      </div>
+
+      <div className="react-tweet-footer">
+        {/* We pass components to allow override, but mainly we want to compose Info + Actions here */}
+        <TweetActions tweet={tweet} />
+        <TweetReplies tweet={tweet} />
+      </div>
     </TweetContainer>
   )
 }

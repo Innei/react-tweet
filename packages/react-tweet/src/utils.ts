@@ -197,6 +197,7 @@ function addEntities(
 function fixRange(tweet: TweetBase, entities: EntityWithType[]) {
   if (
     tweet.entities.media &&
+    tweet.entities.media[0] &&
     tweet.entities.media[0].indices[0] < tweet.display_text_range[1]
   ) {
     tweet.display_text_range[1] = tweet.entities.media[0].indices[0]

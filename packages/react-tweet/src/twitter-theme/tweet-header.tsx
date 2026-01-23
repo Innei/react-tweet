@@ -36,9 +36,6 @@ export const TweetHeader = ({ tweet, components }: Props) => {
             height={48}
           />
         </div>
-        <div className={s.avatarOverflow}>
-          <div className={s.avatarShadow}></div>
-        </div>
       </a>
       <div className={s.author}>
         <a
@@ -62,17 +59,6 @@ export const TweetHeader = ({ tweet, components }: Props) => {
           >
             <span title={`@${user.screen_name}`}>@{user.screen_name}</span>
           </a>
-          <div className={s.authorFollow}>
-            <span className={s.separator}>·</span>
-            <a
-              href={user.follow_url}
-              className={s.follow}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Follow
-            </a>
-          </div>
         </div>
       </div>
       <a

@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Layout } from './layout'
 import { IndexPage } from './pages/index'
 import { TweetPage } from './pages/tweet'
+import { DemoPage } from './pages/demo'
 
 const router = createBrowserRouter([
   {
@@ -11,6 +12,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <IndexPage /> },
+      { path: '/demo', element: <DemoPage /> },
       { path: '/tweet/:id', element: <TweetPage /> },
     ],
   },
