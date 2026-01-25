@@ -1,11 +1,12 @@
 {
   "name": "@innei/react-tweet",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "repository": "https://github.com/vercel/react-tweet.git",
   "author": "Luis Alvarez (https://twitter.com/luis_fades)",
   "scripts": {
-    "build": "pnpm build:swc && pnpm types",
+    "build": "pnpm build:swc && pnpm build:css && pnpm types",
     "build:swc": "swc src -d dist --copy-files",
+    "build:css": "node scripts/bundle-css.js",
     "dev": "pnpm build:swc -w",
     "types": "tsc --emitDeclarationOnly",
     "lint": "TIMING=1 eslint \"src/**/*.{ts,tsx,js,jsx}\" --fix",
@@ -21,11 +22,16 @@
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/index.client.d.ts",
       "react-server": "./dist/index.js",
       "default": "./dist/index.client.js"
     },
-    "./api": "./dist/api/index.js",
-    "./theme.css": "./dist/twitter-theme/theme.css"
+    "./api": {
+      "types": "./dist/api/index.d.ts",
+      "default": "./dist/api/index.js"
+    },
+    "./theme.css": "./dist/twitter-theme/theme.css",
+    "./styles.css": "./dist/styles.css"
   },
   "files": [
     "dist/**/*.{js,d.ts,css}"
@@ -33,13 +39,13 @@
   "typesVersions": {
     "*": {
       "index": [
-        "src/index"
+        "dist/index.client.d.ts"
       ],
       "utils": [
-        "src/utils"
+        "dist/utils.d.ts"
       ],
       "api": [
-        "src/api/index"
+        "dist/api/index.d.ts"
       ],
       "*": []
     }

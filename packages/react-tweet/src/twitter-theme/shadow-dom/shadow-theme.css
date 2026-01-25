@@ -1,0 +1,70 @@
+/* Shadow DOM theme support - :host selectors for isolated components */
+/* This file is NOT processed by bundlers like Turbopack - it's injected at runtime */
+
+:host {
+  display: block;
+}
+
+:host([data-theme='light']) .react-tweet-theme {
+  --tweet-skeleton-gradient: linear-gradient(270deg, #fafafa, #eaeaea, #eaeaea, #fafafa);
+  --tweet-bg-color: #ffffff;
+  --tweet-bg-color-hover: #ffffff;
+  --tweet-bg-color-secondary: #f7f7f7;
+  --tweet-border: 1px solid #eaeaea;
+  --tweet-border-hover: 1px solid #000;
+  --tweet-font-family: 'Geist Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --tweet-font-color: #000;
+  --tweet-font-color-secondary: #666;
+  --tweet-color-blue-primary: #0070f3;
+  --tweet-color-blue-primary-hover: #0051a2;
+  --tweet-color-red-primary: #e00;
+  --tweet-color-green-primary: #0070f3;
+  --tweet-twitter-icon-color: #000;
+  --tweet-verified-blue-color: #0070f3;
+  --tweet-button-bg: #171717;
+  --tweet-button-color: #ffffff;
+  --tweet-button-hover-bg: #404040;
+}
+
+:host([data-theme='dark']) .react-tweet-theme {
+  --tweet-skeleton-gradient: linear-gradient(270deg, #111, #333, #333, #111);
+  --tweet-bg-color: #000;
+  --tweet-bg-color-hover: #000;
+  --tweet-bg-color-secondary: #111;
+  --tweet-border: 1px solid #333;
+  --tweet-border-hover: 1px solid #fff;
+  --tweet-font-family: 'Geist Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --tweet-font-color: #fff;
+  --tweet-font-color-secondary: #888;
+  --tweet-color-blue-primary: #3291ff;
+  --tweet-color-blue-primary-hover: #0070f3;
+  --tweet-color-red-primary: #e00;
+  --tweet-color-green-primary: #3291ff;
+  --tweet-twitter-icon-color: #fff;
+  --tweet-verified-blue-color: #fff;
+  --tweet-button-bg: #ededed;
+  --tweet-button-color: #171717;
+  --tweet-button-hover-bg: #d4d4d4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :host:not([data-theme='light']) .react-tweet-theme {
+    --tweet-skeleton-gradient: linear-gradient(270deg, #111, #333, #333, #111);
+    --tweet-bg-color: #0a0a0a;
+    --tweet-bg-color-hover: #171717;
+    --tweet-bg-color-secondary: #121212;
+    --tweet-border: 1px solid #262626;
+    --tweet-border-hover: 1px solid #525252;
+    --tweet-font-color: #ededed;
+    --tweet-font-color-secondary: #a3a3a3;
+    --tweet-color-blue-primary: #3291ff;
+    --tweet-color-blue-primary-hover: #0070f3;
+    --tweet-color-red-primary: #e00;
+    --tweet-color-green-primary: #3291ff;
+    --tweet-twitter-icon-color: #ededed;
+    --tweet-verified-blue-color: #fff;
+    --tweet-button-bg: #ededed;
+    --tweet-button-color: #171717;
+    --tweet-button-hover-bg: #d4d4d4;
+  }
+}

@@ -5,7 +5,6 @@ import { TweetHeader } from './tweet-header.js'
 import { TweetInReplyTo } from './tweet-in-reply-to.js'
 import { TweetBody } from './tweet-body.js'
 import { TweetMedia } from './tweet-media.js'
-import { TweetInfo } from './tweet-info.js'
 import { TweetActions } from './tweet-actions.js'
 import { TweetReplies } from './tweet-replies.js'
 import { QuotedTweet } from './quoted-tweet/index.js'
@@ -18,25 +17,25 @@ type Props = {
 }
 
 export const EmbeddedTweet = ({ tweet: t, components }: Props) => {
-  // useMemo does nothing for RSC but it helps when the component is used in the client (e.g by SWR)
   const tweet = useMemo(() => enrichTweet(t), [t])
   return (
-    <TweetContainer>
+    <TweetContainer href={tweet.url}>
       <div className="react-tweet-header">
         <TweetHeader tweet={tweet} components={components} />
       </div>
-      
+
       <div className="react-tweet-body">
         {tweet.in_reply_to_status_id_str && <TweetInReplyTo tweet={tweet} />}
         <TweetBody tweet={tweet} />
         {tweet.mediaDetails?.length ? (
           <TweetMedia tweet={tweet} components={components} />
         ) : null}
-        {tweet.quoted_tweet && <QuotedTweet tweet={tweet.quoted_tweet} components={components} />}
+        {tweet.quoted_tweet && (
+          <QuotedTweet tweet={tweet.quoted_tweet} components={components} />
+        )}
       </div>
 
       <div className="react-tweet-footer">
-        {/* We pass components to allow override, but mainly we want to compose Info + Actions here */}
         <TweetActions tweet={tweet} />
         <TweetReplies tweet={tweet} />
       </div>

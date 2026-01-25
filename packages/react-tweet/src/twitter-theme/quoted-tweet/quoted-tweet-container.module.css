@@ -14,7 +14,3 @@
   background-color: var(--tweet-bg-color-secondary); 
   transition: border-color 0.2s;
 }
-
-.root:hover .article {
-  border-color: var(--tweet-font-color-secondary);
-}

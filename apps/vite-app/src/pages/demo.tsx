@@ -1,4 +1,5 @@
-import { EmbeddedTweet } from 'react-tweet'
+import { useState } from 'react'
+import { EmbeddedTweet, ShadowRoot } from 'react-tweet'
 import type { Tweet } from 'react-tweet/api'
 
 const user = {
@@ -7,16 +8,17 @@ const user = {
   screen_name: 'vercel',
   profile_image_url_https:
     'https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png',
+  profile_image_shape: 'Circle' as const,
   is_blue_verified: true,
   verified: true,
-  verified_type: 'Business',
+  verified_type: 'Business' as const,
 }
 
 const baseTweet = {
   __typename: 'Tweet' as const,
   lang: 'en',
   created_at: new Date().toISOString(),
-  display_text_range: [0, 100],
+  display_text_range: [0, 100] as [number, number],
   entities: {
     hashtags: [],
     urls: [],
@@ -78,10 +80,33 @@ const quotedTweet: Tweet = {
 const longTweet: Tweet = {
   ...baseTweet,
   id_str: 'long',
-  text: 'This is a much longer tweet to test how the text wraps and how the layout handles larger blocks of content in the Vite demo. We want to ensure that the typography remains readable and the spacing is consistent with the Vercel design system.  Testing line breaks and Geist Sans font stack.',
+  text: 'This is a much longer tweet to test how the text wraps and how the layout handles larger blocks of content in the Vite demo. We want to ensure that the typography remains readable and the spacing is consistent with the Vercel design system. Testing line breaks and Geist Sans font stack.',
 }
 
+const isolatedTweet: Tweet = {
+  ...baseTweet,
+  id_str: 'isolated',
+  text: 'This tweet demonstrates Shadow DOM style isolation. External CSS styles cannot affect this component!',
+}
+
+const SectionTitle = ({ children }: { children: React.ReactNode }) => (
+  <h2
+    style={{
+      fontSize: 14,
+      fontWeight: 600,
+      textTransform: 'uppercase',
+      color: '#888',
+      marginBottom: 16,
+      letterSpacing: '0.05em',
+    }}
+  >
+    {children}
+  </h2>
+)
+
 export const DemoPage = () => {
+  const [theme, setTheme] = useState<'light' | 'dark' | 'auto'>('auto')
+
   return (
     <div
       style={{
@@ -107,67 +132,97 @@ export const DemoPage = () => {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
         <section>
-          <h2
-            style={{
-              fontSize: 14,
-              fontWeight: 600,
-              textTransform: 'uppercase',
-              color: '#888',
-              marginBottom: 16,
-              letterSpacing: '0.05em',
-            }}
-          >
-            Standard
-          </h2>
+          <SectionTitle>Standard</SectionTitle>
           <EmbeddedTweet tweet={standardTweet} />
         </section>
 
         <section>
-          <h2
-            style={{
-              fontSize: 14,
-              fontWeight: 600,
-              textTransform: 'uppercase',
-              color: '#888',
-              marginBottom: 16,
-              letterSpacing: '0.05em',
-            }}
-          >
-            Reply / Conversation
-          </h2>
+          <SectionTitle>Reply / Conversation</SectionTitle>
           <EmbeddedTweet tweet={replyTweet} />
         </section>
 
         <section>
-          <h2
-            style={{
-              fontSize: 14,
-              fontWeight: 600,
-              textTransform: 'uppercase',
-              color: '#888',
-              marginBottom: 16,
-              letterSpacing: '0.05em',
-            }}
-          >
-            Quoted Tweet
-          </h2>
+          <SectionTitle>Quoted Tweet</SectionTitle>
           <EmbeddedTweet tweet={quotedTweet} />
         </section>
 
         <section>
-          <h2
-            style={{
-              fontSize: 14,
-              fontWeight: 600,
-              textTransform: 'uppercase',
-              color: '#888',
-              marginBottom: 16,
-              letterSpacing: '0.05em',
-            }}
-          >
-            Multi-line Text
-          </h2>
+          <SectionTitle>Multi-line Text</SectionTitle>
           <EmbeddedTweet tweet={longTweet} />
+        </section>
+
+        <section>
+          <SectionTitle>Shadow DOM Isolation</SectionTitle>
+          <p style={{ fontSize: 13, color: '#666', marginBottom: 16 }}>
+            Compare how aggressive global styles affect regular vs isolated
+            components.
+          </p>
+
+          <div style={{ marginBottom: 16 }}>
+            <label style={{ marginRight: 12, fontWeight: 500, fontSize: 13 }}>
+              Theme:
+            </label>
+            <select
+              value={theme}
+              onChange={(e) =>
+                setTheme(e.target.value as 'light' | 'dark' | 'auto')
+              }
+              style={{ padding: '4px 8px', fontSize: 13 }}
+            >
+              <option value="auto">Auto</option>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </div>
+
+          {/* Aggressive global styles that would break normal components */}
+          <style>{`
+            .isolation-demo * {
+              color: red !important;
+              box-sizing: content-box !important;
+            }
+            .isolation-demo a {
+              color: green !important;
+              text-decoration: line-through !important;
+            }
+            .isolation-demo img {
+              max-width: 50px !important;
+              opacity: 0.3 !important;
+            }
+          `}</style>
+
+          <div
+            className="isolation-demo"
+            style={{ display: 'flex', flexDirection: 'column', gap: 24 }}
+          >
+            <div>
+              <p
+                style={{
+                  fontSize: 12,
+                  marginBottom: 8,
+                  fontWeight: 500,
+                }}
+              >
+                ❌ Regular (affected by external CSS)
+              </p>
+              <EmbeddedTweet tweet={isolatedTweet} />
+            </div>
+
+            <div>
+              <p
+                style={{
+                  fontSize: 12,
+                  marginBottom: 8,
+                  fontWeight: 500,
+                }}
+              >
+                ✅ Shadow DOM Isolated
+              </p>
+              <ShadowRoot theme={theme}>
+                <EmbeddedTweet tweet={isolatedTweet} />
+              </ShadowRoot>
+            </div>
+          </div>
         </section>
       </div>
     </div>
