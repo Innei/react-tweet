@@ -1,5 +1,6 @@
 .actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   color: var(--tweet-font-color-secondary);
   padding: 12px var(--tweet-padding-x);
@@ -7,7 +8,9 @@
   border-top: var(--tweet-border);
   font-size: var(--tweet-actions-font-size);
   min-height: 48px;
+  gap: 8px 0;
 }
+
 
 .like,
 .reply,
@@ -74,10 +77,24 @@
   flex: 1;
 }
 
+@media (max-width: 425px) {
+  .spacer {
+    display: none;
+  }
+}
+
 .info {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+@media (max-width: 425px) {
+  .info {
+    flex-basis: 100%;
+    padding-top: 8px;
+    border-top: 1px solid var(--tweet-color-gray-300);
+  }
 }
 
 .brand {
