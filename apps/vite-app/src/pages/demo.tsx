@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { EmbeddedTweet, ShadowRoot } from 'react-tweet'
+import { EmbeddedTweet, ShadowRoot, TweetLoading } from 'react-tweet'
 import type { Tweet } from 'react-tweet/api'
 
 const user = {
@@ -131,6 +131,11 @@ export const DemoPage = () => {
       </p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
+        <section>
+          <SectionTitle>Loading</SectionTitle>
+          <TweetLoading />
+        </section>
+
         <section>
           <SectionTitle>Standard</SectionTitle>
           <EmbeddedTweet tweet={standardTweet} />

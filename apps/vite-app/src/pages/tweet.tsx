@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { EmbeddedTweet, TweetNotFound, TweetSkeleton } from 'react-tweet'
+import { EmbeddedTweet, TweetNotFound, TweetLoading } from 'react-tweet'
 import { type Tweet } from 'react-tweet/api'
 import useSWR from 'swr'
 
@@ -19,7 +19,7 @@ export const TweetPage = () => {
     fetcher
   )
 
-  if (isLoading) return <TweetSkeleton />
+  if (isLoading) return <TweetLoading />
   if (error || !data) return <TweetNotFound error={error} />
 
   return <EmbeddedTweet tweet={data} />

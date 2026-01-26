@@ -1,0 +1,42 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  fill: var(--tweet-twitter-icon-color);
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--tweet-font-color-secondary);
+  border-top-color: var(--tweet-font-color);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+    border-top-color: var(--tweet-font-color-secondary);
+  }
+}
