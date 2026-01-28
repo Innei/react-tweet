@@ -1,6 +1,6 @@
 {
   "name": "@innei/react-tweet",
-  "version": "3.4.1",
+  "version": "3.4.2",
   "repository": "https://github.com/vercel/react-tweet.git",
   "author": "Luis Alvarez (https://twitter.com/luis_fades)",
   "scripts": {

@@ -1,19 +1,19 @@
 # @innei/react-tweet
 
-一个用于在 React 应用中嵌入 Twitter/X 推文的组件库，支持 Next.js、Vite 等框架。
+A component library for embedding Twitter/X tweets in React applications, supporting frameworks like Next.js, Vite, and more.
 
-本项目 fork 自 [vercel/react-tweet](https://github.com/vercel/react-tweet)，并在此基础上进行了独立开发，新增了多项实用功能。
+This project is forked from [vercel/react-tweet](https://github.com/vercel/react-tweet) and has been independently developed with several new practical features.
 
-## Fork 新增特性
+## New Features in Fork
 
-相比上游仓库，本项目新增了以下功能：
+Compared to the upstream repository, this project adds the following features:
 
-- **Shadow DOM 样式隔离** - 完全隔离外部 CSS 干扰，解决全局样式污染问题
-- **可点击卡片** - 整个推文卡片可点击跳转到 Twitter/X
-- **自动主题跟随** - 自动检测页面主题（dark/light）并同步到组件
-- **重新设计的 UI** - 更现代的视觉风格
+- **Shadow DOM Style Isolation** - Complete isolation from external CSS interference, solving global style pollution issues
+- **Clickable Card** - The entire tweet card is clickable and navigates to Twitter/X
+- **Automatic Theme Following** - Automatically detects page theme (dark/light) and syncs to components
+- **Redesigned UI** - More modern visual style
 
-## 安装
+## Installation
 
 ```bash
 npm install @innei/react-tweet
@@ -23,7 +23,7 @@ pnpm add @innei/react-tweet
 yarn add @innei/react-tweet
 ```
 
-## 快速开始
+## Quick Start
 
 ```tsx
 import { Tweet } from '@innei/react-tweet'
@@ -34,13 +34,13 @@ export default function App() {
 }
 ```
 
-## Shadow DOM 样式隔离
+## Shadow DOM Style Isolation
 
-在复杂应用中嵌入推文时，外部 CSS（如 `* { box-sizing }`、`a { color }`、`img { max-width }` 等）可能会影响组件外观。Shadow DOM 隔离功能提供了完整的样式封装。
+When embedding tweets in complex applications, external CSS (such as `* { box-sizing }`, `a { color }`, `img { max-width }`, etc.) may affect component appearance. Shadow DOM isolation provides complete style encapsulation.
 
-### 使用 ShadowRoot
+### Using ShadowRoot
 
-使用 `ShadowRoot` 包装组件以隔离外部样式：
+Wrap components with `ShadowRoot` to isolate external styles:
 
 ```tsx
 import { EmbeddedTweet, ShadowRoot } from '@innei/react-tweet'
@@ -55,9 +55,9 @@ export default function App() {
 }
 ```
 
-### 使用 IsolatedTweet
+### Using IsolatedTweet
 
-便捷组件，内置 Shadow DOM 隔离：
+Convenient component with built-in Shadow DOM isolation:
 
 ```tsx
 import { IsolatedTweet } from '@innei/react-tweet'
@@ -68,53 +68,53 @@ export default function App() {
 }
 ```
 
-### 主题选项
+### Theme Options
 
-`theme` 属性支持三个值：
+The `theme` prop supports three values:
 
-- `'auto'`（默认）- 自动跟随页面主题，通过监听 `<html>` 的 `data-theme` 属性、`.dark`/`.light` 类名以及 `prefers-color-scheme` 媒体查询
-- `'light'` - 强制浅色主题
-- `'dark'` - 强制深色主题
+- `'auto'` (default) - Automatically follows page theme by listening to `<html>` `data-theme` attribute, `.dark`/`.light` class names, and `prefers-color-scheme` media query
+- `'light'` - Force light theme
+- `'dark'` - Force dark theme
 
 ```tsx
-// 自动检测页面主题
+// Automatically detect page theme
 <ShadowRoot theme="auto">
   <Tweet id="..." />
 </ShadowRoot>
 
-// 强制深色主题
+// Force dark theme
 <ShadowRoot theme="dark">
   <Tweet id="..." />
 </ShadowRoot>
 ```
 
-### 工作原理
+### How It Works
 
-Shadow DOM 创建了一个具有独立样式作用域的隔离 DOM 子树。`ShadowRoot` 组件：
+Shadow DOM creates an isolated DOM subtree with independent style scope. The `ShadowRoot` component:
 
-1. 使用 `attachShadow({ mode: 'open' })` 创建 Shadow DOM 边界
-2. 通过 `adoptedStyleSheets` 将页面样式表克隆到 Shadow DOM 中
-3. 监听 `document.documentElement` 的主题变化并同步到 Shadow DOM 宿主元素
+1. Creates Shadow DOM boundary using `attachShadow({ mode: 'open' })`
+2. Clones page stylesheets into Shadow DOM via `adoptedStyleSheets`
+3. Listens to theme changes on `document.documentElement` and syncs to Shadow DOM host element
 
-### 浏览器兼容性
+### Browser Compatibility
 
-- `attachShadow`: 所有现代浏览器
+- `attachShadow`: All modern browsers
 - `adoptedStyleSheets`: Chrome 73+, Firefox 101+, Safari 16.4+
 
-### 限制
+### Limitations
 
-- Shadow DOM 需要客户端 JavaScript（SSR 期间不可用）
-- 首次渲染可能在 hydration 前短暂显示无样式内容
+- Shadow DOM requires client-side JavaScript (not available during SSR)
+- Initial render may briefly show unstyled content before hydration
 
-## API 参考
+## API Reference
 
 ### Tweet
 
 ```tsx
 <Tweet
   id="1628832338187636740"
-  fallback={<Loading />}         // 可选：加载时显示
-  components={customComponents}  // 可选：自定义子组件
+  fallback={<Loading />}         // Optional: display during loading
+  components={customComponents}  // Optional: custom sub-components
 />
 ```
 
@@ -124,8 +124,8 @@ Shadow DOM 创建了一个具有独立样式作用域的隔离 DOM 子树。`Sha
 <IsolatedTweet
   id="1628832338187636740"
   theme="auto"              // 'auto' | 'light' | 'dark'
-  className="my-tweet"      // 可选：宿主元素类名
-  style={{ maxWidth: 500 }} // 可选：宿主元素样式
+  className="my-tweet"      // Optional: host element class name
+  style={{ maxWidth: 500 }} // Optional: host element styles
 />
 ```
 
@@ -134,16 +134,16 @@ Shadow DOM 创建了一个具有独立样式作用域的隔离 DOM 子树。`Sha
 ```tsx
 <ShadowRoot
   theme="auto"              // 'auto' | 'light' | 'dark'
-  className="shadow-host"   // 可选：宿主元素类名
-  style={{ margin: 20 }}    // 可选：宿主元素样式
+  className="shadow-host"   // Optional: host element class name
+  style={{ margin: 20 }}    // Optional: host element styles
 >
   {children}
 </ShadowRoot>
 ```
 
-## 致谢
+## Acknowledgments
 
-本项目基于 [vercel/react-tweet](https://github.com/vercel/react-tweet) 开发，感谢原作者的出色工作。
+This project is based on [vercel/react-tweet](https://github.com/vercel/react-tweet). Thanks to the original authors for their excellent work.
 
 ## License
 
